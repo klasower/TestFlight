@@ -9,10 +9,12 @@
 #import "PgyerAppDetailVC.h"
 #import "PgyAppInfoModel.h"
 #import "PgyerNetAPIManager.h"
+#import "FirAppInfoModel.h"
+#import "FirNetAPIManager.h"
 
 @interface PgyerAppDetailVC ()<UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, strong) PgyAppInfoModel *app;
+@property (nonatomic, strong) FirAppInfoModel *app;
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -29,9 +31,9 @@
 
 - (void)buildUI {
     
-    self.title = self.app.buildName;
+    self.title = self.app.name;
     
-    if (self.app.buildType == 1) {
+    if ([self.app.type isEqualToString:@"ios"]) {
         UIButton *downloadBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [downloadBtn setFrame:CGRectMake(0.0, 0.0, 44.0, 44.0)];
         [downloadBtn setImage:IMAGE(@"download_icon") forState:UIControlStateNormal];
@@ -48,9 +50,9 @@
 }
 
 - (void)loadData {
-    [[PgyerNetAPIManager sharedManager] appDetailWithParams:@{@"_api_key":kPgyerApiKey, @"appKey":self.appKey} andBlock:^(id  _Nonnull data, NSError * _Nonnull error) {
+    [[FirNetAPIManager sharedManager] appDetailWithID:self.appID Params:@{@"api_token":kFirApiToken} andBlock:^(id  _Nonnull data, NSError * _Nonnull error) {
         if (data) {
-            self.app = (PgyAppInfoModel *)data;
+            self.app = (FirAppInfoModel *)data;
             
             [self buildUI];
             
@@ -61,17 +63,17 @@
 
 #pragma mark - button actions
 - (void)download:(UIButton *)button {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"itms-services://?action=download-manifest&url=https://www.pgyer.com/app/plist/%@", self.app.buildKey]]];
+//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"itms-services://?action=download-manifest&url=https://www.pgyer.com/app/plist/%@", self.app.buildKey]]];
 }
 
 #pragma mark - UITableViewDelegate, UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return section == 0 ? 6 : self.app.otherApps.count;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -90,44 +92,44 @@
         switch (indexPath.row) {
             case 0:
                 title = @"Build";
-                subTitle = [NSString stringWithFormat:@"%ld", self.app.buildBuildVersion];
+                subTitle = [NSString stringWithFormat:@"%d", self.app.genre_id];
                 break;
                 
             case 1:
                 title = @"上传时间";
-                subTitle = self.app.buildCreated;
+//                subTitle = self.app.buildCreated;
                 break;
                 
             case 2:
                 title = @"应用大小";
-                subTitle = [NSString stringWithFormat:@"%0.2fM", self.app.buildFileSize/1024.0/1024.0];
+//                subTitle = [NSString stringWithFormat:@"%0.2fM", self.app.buildFileSize/1024.0/1024.0];
                 break;
                 
             case 3:
                 title = @"版本号";
-                subTitle = [NSString stringWithFormat:@"v%@", self.app.buildVersion];
+//                subTitle = [NSString stringWithFormat:@"v%@", self.app.buildVersion];
                 break;
                 
             case 4:
                 title = @"下载链接";
-                subTitle = [NSString stringWithFormat:@"https://www.pgyer.com/%@", self.app.buildShortcutUrl];
+                subTitle = [NSString stringWithFormat:@"https://fir.im/%@", self.app.short_url];
                 break;
                 
             case 5:
                 title = @"下载密码";
-                subTitle = self.app.buildPassword;
+                subTitle = self.app.passwd;
                 break;
                 
             default:
                 break;
         }
     }else {
-        PgyAppInfoModel *other = self.app.otherApps[indexPath.row];
-        title = [NSString stringWithFormat:@"v%@      Build: %ld", other.buildVersion, other.buildBuildVersion];
-        subTitle = other.buildCreated;
+//        PgyAppInfoModel *other = self.app.otherApps[indexPath.row];
+//        title = [NSString stringWithFormat:@"v%@      Build: %ld", other.buildVersion, other.buildBuildVersion];
+//        subTitle = other.buildCreated;
     }
     
-    if (indexPath.section == 1 && self.app.buildType == 1) {
+    if (indexPath.section == 1 && [self.app.type isEqualToString:@"ios"]) {
         cell.accessoryType = UITableViewCellAccessoryDetailButton;
         cell.accessoryView = [[UIImageView alloc] initWithImage:IMAGE(@"download_icon")];
     }else {
@@ -145,9 +147,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 1) {
-        PgyAppInfoModel *app = self.app.otherApps[indexPath.row];
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"itms-services://?action=download-manifest&url=https://www.pgyer.com/app/plist/%@", app.buildKey]]];
+    if (indexPath.section == 1 && [self.app.type isEqualToString:@"ios"]) {
+//        PgyAppInfoModel *app = self.app.otherApps[indexPath.row];
+//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"itms-services://?action=download-manifest&url=https://www.pgyer.com/app/plist/%@", app.buildKey]]];
     }
 }
 

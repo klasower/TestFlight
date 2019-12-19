@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PgyerAppDetailVC : BaseViewController
 
-@property (nonatomic, strong) NSString *appKey;
+@property (nonatomic, strong) NSString *appID;
 
 @end
 

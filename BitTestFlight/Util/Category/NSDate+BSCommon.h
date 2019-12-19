@@ -28,6 +28,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSDate *)bs_dateFromString:(NSString *)string withFormat:(NSString *)format;
 
+/**
+ 通过传入的时间戳和日期格式算出年月日
+ 
+ @param timeStamp 时间戳
+ @param formatter 时间显示格式
+ @return 年月日
+ */
++ (NSString *)bs_displayTimeWithTimeStamp:(NSTimeInterval)timeStamp
+                                formatter:(NSString *)formatter;
+
 @end
 
 NS_ASSUME_NONNULL_END

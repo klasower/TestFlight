@@ -70,4 +70,24 @@ static NSDateFormatter *_displayFormatter = nil;
     return date;
 }
 
+#pragma mark - 通过传入的毫秒时间戳和日期格式算出年月日
++ (NSString *)bs_displayTimeWithTimeStamp:(NSTimeInterval)timeStamp
+                                formatter:(NSString *)formatter {
+    
+    if ([NSString stringWithFormat:@"%@", @(timeStamp)].length == 13) {
+        
+        timeStamp /= 1000.0f;
+    }
+    
+    NSDate *timestampDate = [NSDate dateWithTimeIntervalSince1970:timeStamp];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
+    [dateFormatter setDateFormat:formatter];
+    
+    NSString *dateString = [dateFormatter stringFromDate:timestampDate];
+    
+    return dateString;
+}
+
 @end

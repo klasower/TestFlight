@@ -83,18 +83,18 @@
     }
 }
 
-- (void)setModel:(PgyAppInfoModel *)model {
+- (void)setModel:(FirAppInfoModel *)model {
     _model = model;
     
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:kPgyerIconURL(model.buildIcon)] placeholderImage:kDefaultIcon];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.icon_url] placeholderImage:kDefaultIcon];
     
-    self.nameLabel.text = model.buildName;
+    self.nameLabel.text = model.name;
     
-    self.typeIconImageView.image = model.buildType == 2 ? IMAGE(@"android_icon") : IMAGE(@"apple_icon");
+    self.typeIconImageView.image = [model.type isEqualToString:@"android"] ? IMAGE(@"android_icon") : IMAGE(@"apple_icon");
     
-    self.subTitleLabel.text = [NSString stringWithFormat:@"Build:%ld, %@", model.buildBuildVersion, model.buildCreated];
+    self.subTitleLabel.text = [NSString stringWithFormat:@"更新时间: %@", [NSDate bs_displayTimeWithTimeStamp:model.updated_at formatter:@"yyyy-MM-dd HH:mm:ss"]];
     
-    self.updateButton.hidden = model.buildType == 2;
+    self.updateButton.hidden = [model.type isEqualToString:@"android"];
 }
 
 @end

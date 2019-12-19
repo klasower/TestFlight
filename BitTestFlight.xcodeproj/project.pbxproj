@@ -44,6 +44,8 @@
 		02B5F5322296485600CF927F /* MJPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B5F5272296485600CF927F /* MJPhoto.m */; };
 		02B5F5332296485600CF927F /* UIImageView+MJWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B5F5292296485600CF927F /* UIImageView+MJWebCache.m */; };
 		02B5F53622966BC300CF927F /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B5F53522966BC300CF927F /* UIView+Frame.m */; };
+		02C8AE1D23AA003100A51DF0 /* FirNetAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 02C8AE1C23AA003100A51DF0 /* FirNetAPIManager.m */; };
+		02C8AE2123AA015D00A51DF0 /* FirAppInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 02C8AE2023AA015D00A51DF0 /* FirAppInfoModel.m */; };
 		99B68DA80A7F21EA5EE1ACFA /* libPods-BitTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 136FDB1825266A529B10ECF0 /* libPods-BitTestFlight.a */; };
 /* End PBXBuildFile section */
 
@@ -140,6 +142,10 @@
 		02B5F5292296485600CF927F /* UIImageView+MJWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+MJWebCache.m"; sourceTree = "<group>"; };
 		02B5F53422966BC300CF927F /* UIView+Frame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
 		02B5F53522966BC300CF927F /* UIView+Frame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		02C8AE1B23AA003100A51DF0 /* FirNetAPIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirNetAPIManager.h; sourceTree = "<group>"; };
+		02C8AE1C23AA003100A51DF0 /* FirNetAPIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirNetAPIManager.m; sourceTree = "<group>"; };
+		02C8AE1F23AA015D00A51DF0 /* FirAppInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirAppInfoModel.h; sourceTree = "<group>"; };
+		02C8AE2023AA015D00A51DF0 /* FirAppInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirAppInfoModel.m; sourceTree = "<group>"; };
 		136FDB1825266A529B10ECF0 /* libPods-BitTestFlight.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BitTestFlight.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		553B206C4C6B0F40E35121FA /* Pods-BitTestFlight.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitTestFlight.release.xcconfig"; path = "Target Support Files/Pods-BitTestFlight/Pods-BitTestFlight.release.xcconfig"; sourceTree = "<group>"; };
 		82BF9B09A65AF336720F8B9A /* Pods-BitTestFlight.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitTestFlight.debug.xcconfig"; path = "Target Support Files/Pods-BitTestFlight/Pods-BitTestFlight.debug.xcconfig"; sourceTree = "<group>"; };
@@ -280,6 +286,7 @@
 		02518828228D3BF00095B30D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				02C8AE1E23AA014C00A51DF0 /* Fir */,
 				02147C9F2397519A002F3AD2 /* Pgyer */,
 				02518836228E553B0095B30D /* User */,
 				02518832228E519C0095B30D /* Login */,
@@ -399,6 +406,8 @@
 				02B5F4F32294FB8000CF927F /* UserNetAPIManager.m */,
 				02147C9C23975017002F3AD2 /* PgyerNetAPIManager.h */,
 				02147C9D23975017002F3AD2 /* PgyerNetAPIManager.m */,
+				02C8AE1B23AA003100A51DF0 /* FirNetAPIManager.h */,
+				02C8AE1C23AA003100A51DF0 /* FirNetAPIManager.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -436,6 +445,15 @@
 				02B5F5292296485600CF927F /* UIImageView+MJWebCache.m */,
 			);
 			path = MJPhotoBrowser;
+			sourceTree = "<group>";
+		};
+		02C8AE1E23AA014C00A51DF0 /* Fir */ = {
+			isa = PBXGroup;
+			children = (
+				02C8AE1F23AA015D00A51DF0 /* FirAppInfoModel.h */,
+				02C8AE2023AA015D00A51DF0 /* FirAppInfoModel.m */,
+			);
+			path = Fir;
 			sourceTree = "<group>";
 		};
 		499F909D051B05195090E427 /* Frameworks */ = {
@@ -659,6 +677,7 @@
 				02147CA623978680002F3AD2 /* PgyerAppCell.m in Sources */,
 				02B5F52B2296485600CF927F /* MJPhotoLoadingView.m in Sources */,
 				02B5F4F82295248100CF927F /* OpenUDID.m in Sources */,
+				02C8AE1D23AA003100A51DF0 /* FirNetAPIManager.m in Sources */,
 				0211950E239A2C2F0019B4C2 /* PgyerAppDetailVC.m in Sources */,
 				0251884F228EB23E0095B30D /* HomePageVC.m in Sources */,
 				02518845228EAB370095B30D /* BSTabBarController.m in Sources */,
@@ -678,6 +697,7 @@
 				02B5F52E2296485600CF927F /* MJPhotoBrowser.m in Sources */,
 				0251883D228E8D7A0095B30D /* NSObject+BSCommon.m in Sources */,
 				0251885B22925A8D0095B30D /* NSDate+BSCommon.m in Sources */,
+				02C8AE2123AA015D00A51DF0 /* FirAppInfoModel.m in Sources */,
 				02147C9E23975017002F3AD2 /* PgyerNetAPIManager.m in Sources */,
 				025188582292524E0095B30D /* UIImage+BSCommon.m in Sources */,
 			);
